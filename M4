@@ -1,0 +1,21 @@
+#Capitulo 10 - Cara ou coroa
+
+import random
+
+def play():
+    guess = ''
+    sides = ['cara','coroa']
+    while guess not in (sides):
+        print('Digite cara ou coroa:')
+        guess = input().lower()
+    toss = random.choice(sides)
+    
+    if toss == guess:
+        print('Você acertou!')
+    else:
+        print('Errouuu! Tente novamente')
+        if toss == input().lower():
+           print('Você acertou!')
+        else:
+            print('Errouuu de novo!')
+play()
