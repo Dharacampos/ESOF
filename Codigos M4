@@ -28,7 +28,7 @@ def moveFileType(folder):
   for root, dirs, files in os.walk(folder): 
                for file in files: 
                    if file.endswith('.jpg'):
-                    image_path=os.path.join(root,file)  # get the path location of each jpeg image.
+                    image_path=os.path.join(root,file) 
                     print 'location: ',image_path 
                     shutil.copy(image_path, '/home/anum/Documents/Stackoverflow questions')
 
@@ -43,18 +43,18 @@ import zipfile
 def backupToZip(folder):
     folder = os.path.abspath(folder)
 
-    number = 1
+    n = 1
     while True:
-        zipFilename = os.path.basename(folder) + '_' + str(number) + '.zip'
+        zipFilename = os.path.basename(folder) + '_' + str(n) + '.zip'
         if not os.path.exists(zipFilename):
             break
-        number = number + 1
+        n = n + 1
 
-    print('Creating %s...' % (zipFilename))
+    print('Criando %s...' % (zipFilename))
     backupZip = zipfile.ZipFile(zipFilename, 'w')
 
     for foldername, subfolders, filenames in os.walk(folder):
-        print('Adding files in ' + foldername + '...')
+        print('Adicionando arquivos ' + foldername + '...')
         backupZip.write(foldername)
         for filename in filenames:
             newBase = os.path.basename(folder) + '_'
@@ -69,16 +69,16 @@ def backupToZip(folder):
 
 import os
 
-def deleteUnneeded(folder):
+def deleta(folder):
     folder = os.path.abspath(folder)
     for foldername, subfolders, filenames in os.walk(folder):
         for filename in filenames:
             fileSize = os.path.getsize(foldername + '/' + filename)
             if int(fileSize) < 10000000:
                 continue
-            #os.unlink(filename) #Commented out to protect against accidental deletion
-            print('Deleting ' + filename + '...') #Print only to verify working correctly
+            #os.unlink(filename) 
+            print('Deletando ' + filename + '...') 
 
-deleteUnneeded('/Users/username/Documents')
-print('Done')
+deleta('/Users/username/Documents')
+print('Deletado.')
 
