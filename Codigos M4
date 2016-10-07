@@ -30,7 +30,7 @@ def moveFileType(folder):
                    if file.endswith('.jpg'):
                     image_path=os.path.join(root,file) 
                     print 'location: ',image_path 
-                    shutil.copy(image_path, '/home/anum/Documents/Stackoverflow questions')
+                    shutil.copy(image_path, '/home/anum/Documents/ questions')
 
 
 moveFileType('/home/anum/Pictures/')
