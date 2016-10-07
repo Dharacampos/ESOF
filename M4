@@ -19,3 +19,66 @@ def play():
         else:
             print('Errouuu de novo!')
 play()
+
+#Capitulo 9 - Copiar arquivos
+
+import os, shutil
+
+def moveFileType(folder): 
+  for root, dirs, files in os.walk(folder): 
+               for file in files: 
+                   if file.endswith('.jpg'):
+                    image_path=os.path.join(root,file)  # get the path location of each jpeg image.
+                    print 'location: ',image_path 
+                    shutil.copy(image_path, '/home/anum/Documents/Stackoverflow questions')
+
+
+moveFileType('/home/anum/Pictures/')
+
+#Backup de arquivos
+
+import os
+import zipfile
+
+def backupToZip(folder):
+    folder = os.path.abspath(folder)
+
+    number = 1
+    while True:
+        zipFilename = os.path.basename(folder) + '_' + str(number) + '.zip'
+        if not os.path.exists(zipFilename):
+            break
+        number = number + 1
+
+    print('Creating %s...' % (zipFilename))
+    backupZip = zipfile.ZipFile(zipFilename, 'w')
+
+    for foldername, subfolders, filenames in os.walk(folder):
+        print('Adding files in ' + foldername + '...')
+        backupZip.write(foldername)
+        for filename in filenames:
+            newBase = os.path.basename(folder) + '_'
+            if filename.startswith(newBase) and filename.endswith('.zip'):
+                continue
+            backupZip.write(os.path.join(foldername, filename))
+    
+    backupZip.close()
+    print('Done')
+
+# Deletar arquivos
+
+import os
+
+def deleteUnneeded(folder):
+    folder = os.path.abspath(folder)
+    for foldername, subfolders, filenames in os.walk(folder):
+        for filename in filenames:
+            fileSize = os.path.getsize(foldername + '/' + filename)
+            if int(fileSize) < 10000000:
+                continue
+            #os.unlink(filename) #Commented out to protect against accidental deletion
+            print('Deleting ' + filename + '...') #Print only to verify working correctly
+
+deleteUnneeded('/Users/username/Documents')
+print('Done')
+
