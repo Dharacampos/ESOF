@@ -29,7 +29,7 @@ def moveFileType(folder):
                for file in files: 
                    if file.endswith('.jpg'):
                     image_path=os.path.join(root,file) 
-                    print 'location: ',image_path 
+                    print ('location: ',image_path) 
                     shutil.copy(image_path, '/home/anum/Documents/ questions')
 
 
